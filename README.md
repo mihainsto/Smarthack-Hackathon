@@ -9,7 +9,7 @@ This year theme is: TBD
 ## The Codeleones
 
 Our team:
-* [a link](https://github.com/user/repo/blob/branch/other_file.md)
+* [Teshyx](https://github.com/Teshyx)
 * [stefancristea](https://github.com/stefancristea)
 * [radudilirici](https://github.com/radudilirici)
 * [mihainsto](https://github.com/mihainsto)
