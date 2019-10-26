@@ -1,6 +1,7 @@
 # Smarthack
 
-Smarthack is a 24 hours hackathon where teams of 3-4 students work at developing a software-based product on a defined theme. The best team wins.
+Smarthack is a 24 hours hackathon where teams of 3-4 students work at developing a software-based product on a defined theme. The best team wins.  
+Smarthack will take place on 02-03 november 2019
 
 ## The Codeleones
 
