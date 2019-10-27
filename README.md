@@ -9,10 +9,10 @@ This year theme is: TBD
 ## The Codeleones
 
 Our team:
-* [Teshyx](https://github.com/Teshyx)
-* [stefancristea](https://github.com/stefancristea)
-* [radudilirici](https://github.com/radudilirici)
-* [mihainsto](https://github.com/mihainsto)
+* [Alexandru Tesileanu](https://github.com/Teshyx)
+* [Stefan Cristea](https://github.com/stefancristea)
+* [Radu Dilirici](https://github.com/radudilirici)
+* [Mihai Stoian](https://github.com/mihainsto)
 
 
 ***
