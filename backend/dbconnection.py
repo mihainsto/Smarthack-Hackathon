@@ -235,7 +235,7 @@ def get_ad_info(id):
     finally:
         if (connection.is_connected()):
             try:
-                query = ("SELECT title, user_id, description, category, location, post_time  FROM ads WHERE id = '" + str(id) + "'")
+                query = ("SELECT title, user_id, description, category, location, post_time, active  FROM ads WHERE id = '" + str(id) + "'")
                 cursor.execute(query)
                 fetch = cursor.fetchall()
 
@@ -250,6 +250,7 @@ def get_ad_info(id):
                 response['category'] = fetch[0][3]
                 response['location'] = fetch[0][4]
                 response['post_time'] = str(fetch[0][5])
+                response['active'] = fetch[0][6]
                 return json.dumps(response)
             except:
                 response = {}
@@ -303,5 +304,43 @@ def get_ad_by_location_category(location, category):
                 return json.dumps(response)
 
 
-print(get_all_info(1))
+def trigger_ad_activation(id, status):
+    try:
+        connection = mysql.connector.connect(host='localhost',
+                                             database='codeleones',
+                                             user='user',
+                                             password='@pass')
+
+        if connection.is_connected():
+            db_Info = connection.get_server_info()
+            print("Connected to MySQL Server version ", db_Info)
+            cursor = connection.cursor(buffered=True)
+            cursor.execute("select database();")
+            record = cursor.fetchone()
+            print("You're connected to database: ", record)
+
+    except Error as e:
+        print("Error while connecting to MySQL", e)
+    finally:
+        if (connection.is_connected()):
+            try:
+                query = ("UPDATE ads SET active = '"+ str(status) +"' WHERE id = '"+ str(id) +"' ")
+                cursor.execute(query)
+                #fetch = cursor.fetchall()
+                connection.commit()
+                cursor.close()
+                connection.close()
+                print("MySQL connection is closed")
+                response = {}
+                response['status'] = 'True'
+                return json.dumps(response)
+            except:
+                response = {}
+                response['status'] = 'False'
+                return json.dumps(response)
+
+
+print(get_ad_info(2))
+
+
 

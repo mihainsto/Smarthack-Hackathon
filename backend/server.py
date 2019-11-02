@@ -59,8 +59,16 @@ def get_adinfocategorylocation():
     if request.method == 'POST':
         userDetails = request.json
         location = userDetails['location']
-        location = userDetails['category']
+        category = userDetails['category']
         return get_ad_by_location_category(location, category)
+
+@app.route('/changeadstatus', methods=['POST'])
+def change_ad_status():
+    if request.method == 'POST':
+        userDetails = request.json
+        ad_id = userDetails['id']
+        ad_status = userDetails['status']
+        return trigger_ad_activation(ad_id, ad_status)
 
 @app.route('/')
 def main():
