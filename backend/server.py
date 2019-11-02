@@ -35,6 +35,25 @@ def get_info():
         id = userDetails['id']
         return get_all_info(id)
 
+
+@app.route('/adregister', methods=['POST'])
+def adregister():
+    if request.method == 'POST':
+        userDetails = request.json
+        title = userDetails['title']
+        userid = userDetails['userid']
+        description = userDetails['description']
+        category = userDetails['category']
+        location = userDetails['location']
+        return register_ad(title,userid,description,category,location)
+
+@app.route('/addetails', methods=['POST'])
+def get_adinfo():
+    if request.method == 'POST':
+        userDetails = request.json
+        id = userDetails['id']
+        return get_ad_info(id)
+
 @app.route('/')
 def main():
     return 'hi'
