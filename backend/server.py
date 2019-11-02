@@ -54,6 +54,14 @@ def get_adinfo():
         id = userDetails['id']
         return get_ad_info(id)
 
+@app.route('/addfiltercategorylocation', methods=['POST'])
+def get_adinfocategorylocation():
+    if request.method == 'POST':
+        userDetails = request.json
+        location = userDetails['location']
+        location = userDetails['category']
+        return get_ad_by_location_category(location, category)
+
 @app.route('/')
 def main():
     return 'hi'
