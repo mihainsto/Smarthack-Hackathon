@@ -14,7 +14,6 @@ def auth():
         username = userDetails['username']
         password = userDetails['password']
         return check_user(username,password)
-    return 'hello there'
 
 
 @app.route('/register', methods=['POST'])
@@ -27,8 +26,14 @@ def register():
         email = userDetails['email']
         phone_number = userDetails['phone_number']
         return register_user(username,password,email,phone_number)
-    return 'hello2'
 
+
+@app.route('/userdetails', methods=['POST'])
+def get_info():
+    if request.method == 'POST':
+        userDetails = request.json
+        id = userDetails['id']
+        return get_all_info(id)
 
 @app.route('/')
 def main():

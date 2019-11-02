@@ -107,6 +107,44 @@ def register_user(username, password, email, phone_number):
                 return json.dumps(response)
 
 
+def get_all_info(id):
+    try:
+        connection = mysql.connector.connect(host='localhost',
+                                             database='codeleones',
+                                             user='user',
+                                             password='@pass')
+
+        if connection.is_connected():
+            db_Info = connection.get_server_info()
+            print("Connected to MySQL Server version ", db_Info)
+            cursor = connection.cursor(buffered=True)
+            cursor.execute("select database();")
+            record = cursor.fetchone()
+            print("You're connected to database: ", record)
+
+    except Error as e:
+        print("Error while connecting to MySQL", e)
+    finally:
+        if (connection.is_connected()):
+            try:
+                query = ("SELECT username, password, email, phone_number FROM users WHERE id = '" + str(id) + "'")
+                cursor.execute(query)
+                fetch = cursor.fetchall()
+
+                Dbpassword = fetch[0][1]
+                cursor.close()
+                connection.close()
+                print("MySQL connection is closed")
+                response = {}
+                response['status'] = 'True'
+                response['username'] = fetch[0][0]
+                response['email'] = fetch[0][2]
+                response['phone_number'] = fetch[0][3]
+                return json.dumps(response)
+            except:
+                response = {}
+                response['status'] = 'False'
+                return json.dumps(response)
 
 
-
+print(get_all_info(12))
