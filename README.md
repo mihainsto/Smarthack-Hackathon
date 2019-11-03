@@ -33,9 +33,9 @@ A web app that lets people donate things that are no longer useful for them. Suc
  
  
  Technologies used:
- Vue.js - frontend
- Flask - backend
- MySQL - database
- Pretrained word2vec model - Machine Learning
+ Vue.js - frontend  
+ Flask - backend  
+ MySQL - database  
+ Pretrained word2vec model - Machine Learning  
  
  
