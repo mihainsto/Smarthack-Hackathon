@@ -1,5 +1,6 @@
 import mysql.connector
 from mysql.connector import Error
+from findpreferences import check_matches
 import json
 
 
@@ -177,6 +178,7 @@ def register_ad(title, userid, description, category, location):
                     response = {}
                     response['id'] = get_ad_id(title)
                     response['status'] = 'True'
+                    check_matches(title, description, category)
                     return json.dumps(response)
                 except:
                     response = {}
@@ -296,6 +298,7 @@ def get_ad_by_location_category(location, category):
                     response_entry['category'] = fetch[i][3]
                     response_entry['location'] = fetch[i][4]
                     response_entry['post_time'] = str(fetch[i][5])
+                    response_entry['id'] = get_ad_id(str(fetch[i][0]))
                     response.append(response_entry)
                 return json.dumps(response)
             except:
@@ -339,8 +342,147 @@ def trigger_ad_activation(id, status):
                 response['status'] = 'False'
                 return json.dumps(response)
 
+def get_preference_id(user_id, category, preference):
+    try:
+        connection = mysql.connector.connect(host='localhost',
+                                             database='codeleones',
+                                             user='user',
+                                             password='@pass')
 
-print(get_ad_info(2))
+        if connection.is_connected():
+            db_Info = connection.get_server_info()
+            print("Connected to MySQL Server version ", db_Info)
+            cursor = connection.cursor(buffered=True)
+            cursor.execute("select database();")
+            record = cursor.fetchone()
+            print("You're connected to database: ", record)
+
+    except Error as e:
+        print("Error while connecting to MySQL", e)
+    finally:
+        if (connection.is_connected()):
+            query = ("SELECT id FROM user_preferences WHERE user_id = '" + str(user_id) + "' AND category = '" + str(category) + "' AND keyword = '" + str(preference) + "'")
+            cursor.execute(query)
+            fetch = cursor.fetchall()
+            id = fetch[0][0]
+            cursor.close()
+            connection.close()
+            print("MySQL connection is closed")
+            return id
+
+def add_preference(user_id, category, preference):
+        try:
+            connection = mysql.connector.connect(host='localhost',
+                                             database='codeleones',
+                                             user='user',
+                                             password='@pass')
+
+            if connection.is_connected():
+                db_Info = connection.get_server_info()
+                print("Connected to MySQL Server version ", db_Info)
+                cursor = connection.cursor(buffered=True)
+                cursor.execute("select database();")
+                record = cursor.fetchone()
+                print("You're connected to database: ", record)
+
+        except Error as e:
+            print("Error while connecting to MySQL", e)
+        finally:
+            if (connection.is_connected()):
+                #query = ("SELECT username, password FROM users WHERE username = '" + str(username) + "'")
+                try:
+                    query = ("INSERT INTO user_preferences (user_id, category, keyword) VALUES ('"+str(user_id)+"', '"+str(category)+"','"+str(preference)+"')")
+                    cursor.execute(query)
+                    connection.commit()
+                    cursor.close()
+                    connection.close()
+                    print("MySQL connection is closed")
+                    response = {}
+                    response['status'] = 'True'
+                    response['id'] = get_preference_id(user_id, category, preference)
+                    return json.dumps(response)
+                except:
+                    response = {}
+                    response['status'] = 'False'
+                    return json.dumps(response)
+
+def get_preferences(user_id):
+    try:
+        connection = mysql.connector.connect(host='localhost',
+                                             database='codeleones',
+                                             user='user',
+                                             password='@pass')
+
+        if connection.is_connected():
+            db_Info = connection.get_server_info()
+            print("Connected to MySQL Server version ", db_Info)
+            cursor = connection.cursor(buffered=True)
+            cursor.execute("select database();")
+            record = cursor.fetchone()
+            print("You're connected to database: ", record)
+
+    except Error as e:
+        print("Error while connecting to MySQL", e)
+    finally:
+        if (connection.is_connected()):
+            try:
+                query = ("SELECT id, category, keyword FROM user_preferences WHERE user_id = '" + str(user_id) + "'")
+                cursor.execute(query)
+                fetch = cursor.fetchall()
+
+                cursor.close()
+                connection.close()
+                print("MySQL connection is closed")
+                response_ar = []
+                for i in range(len(fetch)):
+                    response = {}
+                    response['status'] = 'True'
+                    response['id'] = fetch[i][0]
+                    response['category'] = fetch[i][1]
+                    response['keyword'] = fetch[i][2]
+                    response_ar.append(response)
+
+                return json.dumps(response_ar)
+            except:
+                response = {}
+                response['status'] = 'False'
+                return json.dumps(response)
+
+
+def remove_preference(id):
+    try:
+        connection = mysql.connector.connect(host='localhost',
+                                             database='codeleones',
+                                             user='user',
+                                             password='@pass')
+
+        if connection.is_connected():
+            db_Info = connection.get_server_info()
+            print("Connected to MySQL Server version ", db_Info)
+            cursor = connection.cursor(buffered=True)
+            cursor.execute("select database();")
+            record = cursor.fetchone()
+            print("You're connected to database: ", record)
+
+    except Error as e:
+        print("Error while connecting to MySQL", e)
+    finally:
+        if (connection.is_connected()):
+            try:
+                query = ("DELETE FROM user_preferences WHERE id = '" + str(id) + "'")
+                cursor.execute(query)
+                connection.commit()
+                cursor.close()
+                connection.close()
+                print("MySQL connection is closed")
+                response = {}
+                response['status'] = 'True'
+                return json.dumps(response)
+            except:
+                response = {}
+                response['status'] = 'False'
+                return json.dumps(response)
+
 
 
 

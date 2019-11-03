@@ -70,6 +70,29 @@ def change_ad_status():
         ad_status = userDetails['status']
         return trigger_ad_activation(ad_id, ad_status)
 
+@app.route('/addpreferece', methods=['POST'])
+def add_preference_call():
+    if request.method == 'POST':
+        userDetails = request.json
+        user_id = userDetails['user_id']
+        category = userDetails['category']
+        preference = userDetails['preference']
+        return add_preference(user_id, category, preference)
+
+@app.route('/getpreferences', methods=['POST'])
+def get_preferences_call():
+    if request.method == 'POST':
+        userDetails = request.json
+        user_id = userDetails['user_id']
+        return get_preferences(user_id)
+
+@app.route('/removepreference', methods=['POST'])
+def remove_preference_call():
+    if request.method == 'POST':
+        userDetails = request.json
+        preference_id = userDetails['id']
+        return remove_preference(preference_id)
+
 @app.route('/')
 def main():
     return 'hi'
