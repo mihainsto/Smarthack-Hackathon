@@ -24,6 +24,6 @@ A web app that lets people donate things that are no longer useful for them. Suc
 
  Design:
  <p>
-  <img src="screenshots/1.png" width="250" ">
-  <img src="screenshots/2.png" width="250" ">
+  <img src="screenshots/1.png" ">
+  <img src="screenshots/2.png" ">
  </p>    
