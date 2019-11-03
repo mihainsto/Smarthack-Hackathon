@@ -18,4 +18,12 @@ Our team:
 ***
 
 
-# Project Title(TBD)
+# Moka
+
+A web app that lets people donate things that are no longer useful for them. Such as food, items, services.
+
+ Design:
+ <p>
+  <img src="screenshots/1.png" width="250" ">
+  <img src="screenshots/2.png" width="250" ">
+ </p>    
