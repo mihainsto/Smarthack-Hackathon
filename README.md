@@ -20,7 +20,7 @@ Our team:
 
 # Moka
 
-A web app that lets people donate things that are no longer useful for them. Such as food, items, services.
+A web app that lets people donate things that are no longer useful for them. Such as food, items or services.
 
  Design:
  <p>
