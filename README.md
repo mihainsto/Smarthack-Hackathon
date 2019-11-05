@@ -4,7 +4,7 @@ Smarthack is a 24 hours hackathon where teams of 3-4 students work at developing
 Smarthack was on 02-03 november 2019. 
 
 
-This year theme is: How can you help the society you live in, using technology?
+The theme was: How can you help the society you live in, using technology?
 
 ## The Codeleones
 
