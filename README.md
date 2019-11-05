@@ -22,6 +22,7 @@ Our team:
 
 A web app that lets people donate things that are no longer useful for them. Such as food, items or services.  
 A lightweight(no ML) version of the app hosted on heroku: http://mokacodeleones.herokuapp.com/ (It takes a while to load because heroku wakes the web server on request)  
+
  Design:
  <p>
   <img src="screenshots/4.png" ">
