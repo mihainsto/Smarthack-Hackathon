@@ -9,7 +9,7 @@ The theme was: How can you help the society you live in, using technology?
 ## The Codeleones
 
 Our team:
-* [Alexandru Tesileanu](https://github.com/Teshyx)
+* [Alexandru Tesileanu](https://github.com/TesileanuAlexandru)
 * [Stefan Cristea](https://github.com/stefancristea)
 * [Radu Dilirici](https://github.com/radudilirici)
 * [Mihai Stoian](https://github.com/mihainsto)
